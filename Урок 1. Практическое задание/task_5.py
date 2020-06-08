@@ -13,9 +13,12 @@
 
 first_str = input('Введите первую букву [a..z]: ')
 second_str = input('Введите вторую букву [a..z]: ')
-if len(first_str) != 1 or len(second_str) != 1 or first_str == second_str \
-        or first_str < 'a' or first_str > 'z' or second_str < 'a' or second_str > 'z':
-    print('Эх... что-то не так с вводом')
+if len(first_str) != 1 or len(second_str) != 1:
+    print('Надо ввести по одной букве')
+elif first_str == second_str:
+    print('Буквы должны быть разные')
+elif first_str < 'a' or first_str > 'z' or second_str < 'a' or second_str > 'z':
+    print('Буквы должны быть в диапазоне [a..z]')
 else:
     print(f'Буква "{first_str}" в алфавите занимает {ord(first_str) - ord("a") + 1} место,'
           f' буква "{second_str}" занимает {ord(second_str) - ord("a") + 1} место '
