@@ -11,9 +11,12 @@
 В обоих случаях он 24, но никак не -24
 """
 
-first_str = input('Введите первую букву: ')
-second_str = input('Введите вторую букву: ')
-if len(first_str) == 1 and len(second_str) == 1:
-    print(ord(first_str))
-else:
+first_str = input('Введите первую букву[a..z]: ')
+second_str = input('Введите вторую букву[a.z.]: ')
+if len(first_str) != 1 or len(second_str) != 1 or first_str == second_str \
+        or first_str < 'a' or first_str > 'z' or second_str < 'a' or second_str > 'z':
     print('Эх... что-то не так с вводом')
+else:
+    print(f'Буква {first_str} в алфавите занимает {ord(first_str) - ord("a") + 1} место,'
+          f' буква {second_str} занимает {ord(second_str) - ord("a") + 1} место '
+          f'и между ними {(ord(first_str) - ord(second_str)) - 1} букв')
