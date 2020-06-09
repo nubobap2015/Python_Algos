@@ -8,7 +8,7 @@ a = float(input('a = '))
 b = float(input('b = '))
 c = float(input('c = '))
 
-if a == b or b == c  or c == a:
+if a == b or b == c or c == a:
     print('Числа должны быть разные')
 else:
     if a < b:
