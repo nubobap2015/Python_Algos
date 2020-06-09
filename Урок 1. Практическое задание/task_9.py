@@ -13,6 +13,7 @@ if a == b or b == c or c == a:
 else:
     if a < b:
         a, b = b, a
+
     if b > c:
         print(b)
     elif c > a:
