@@ -15,5 +15,5 @@
 В диапазоне 2-99: 11 чисел кратны 9
 """
 
-for ii in range(2, 10):
-    print(ii, len([i for i in range(2, 100) if i % ii == 0]))
+
+print([[ii, len([i for i in range(2, 100) if i % ii == 0])] for ii in range(2, 10)])
