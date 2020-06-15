@@ -15,7 +15,7 @@ import random
 
 l = [random.randint(0, 9) for i in range(10)]
 print('Начальный  массив', l)
-l_ind_max = l.index(max(l))
-l_ind_min = l.index(min(l))
-l[l_ind_max], l[l_ind_min] = l[l_ind_min], l[l_ind_max]
+ma = l.index(max(l))
+mi = l.index(min(l))
+l[ma], l[mi] = l[mi], l[ma]
 print('Измененный массив', l)
