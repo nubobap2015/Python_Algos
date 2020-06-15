@@ -16,4 +16,4 @@
 """
 
 for ii in range(2, 10):
-    print(ii, len([i for i in range(100) if i % ii == 0]))
+    print(ii, len([i for i in range(2, 100) if i % ii == 0]))
