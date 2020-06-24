@@ -13,10 +13,10 @@
 """
 import collections
 
-
+# Решение через ООП и коллекцию
 class MyIntHex:
     def __init__(self, list_value):
-        self.hex_list = list_value
+        self.hex_list = collections.deque(list_value)
 
     def __str__(self):
         return f'{self.hex_list}'
