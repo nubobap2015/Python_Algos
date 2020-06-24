@@ -42,7 +42,7 @@ for i in range(firms_count):
             a_profit = input('Введите поквартальную прибыль за год через пробел: ')
             a_profit_list = tuple(map(float, a_profit.split()[:4]))
             is_repeat = False
-        except Exception as err:
+        except ValueError as err:
             print(err, 'Повторите ввод...')
             is_repeat = True
     tmp = MyProfit(*a_profit_list, sum(a_profit_list))
