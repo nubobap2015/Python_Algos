@@ -45,7 +45,7 @@ for i in range(firms_count):
         except ValueError as err:
             print(err, 'Повторите ввод...')
             is_repeat = True
-    tmp = MyProfit(*a_profit_list, sum(a_profit_list))
+    tmp = MyProfit(*a_profit_list[:4], sum(a_profit_list))
     firms_collection.append(MyFirm(a_name, tmp))
 
 avg_sum = sum([i.profit.profit for i in firms_collection])/len(firms_collection)
