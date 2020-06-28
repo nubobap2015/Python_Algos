@@ -11,47 +11,44 @@
 
 ВНИМАНИЕ: ЗАДАНИЯ, В КОТОРЫХ БУДУТ ГОЛЫЕ ЦИФРЫ ЗАМЕРОВ (БЕЗ АНАЛИТИКИ)
 БУДУТ ПРИНИМАТЬСЯ С ОЦЕНКОЙ УДОВЛЕТВОРИТЕЛЬНО
-
--------------------------------------------------
-2.9. Среди натуральных чисел, которые были введены, найти
-наибольшее по сумме цифр. Вывести на экран это число и сумму его цифр.
-
-Пример:
-Введите количество чисел: 2
-Введите число: 23
-Введите число: 2
-Наибольшее число по сумме цифр: 23, сумма его цифр: 5
-
-ЗДЕСЬ ДОЛЖНА БЫТЬ РЕАЛИЗАЦИЯ ЧЕРЕЗ РЕКУРСИЮ
 """
 # --== Python 3.8; OS x64 ==--
 
 from memory_profiler import profile
 from sys import getrefcount
 from pympler import asizeof
+from random import randint
 
 
 @profile
-def get_digits_sum(num):
-    if num == 0:
-        return 0
-    category = 10 ** (len(str(num)) - 1)
-    cur_digit = num // category
-    return cur_digit + get_digits_sum(num - cur_digit * category)
+def create_m(x, y):
+    return [[randint(10, 100) for ii in range(x)] for i in range(y)]
 
 
 @profile
-def recursion(num_count, max_num=0, max_sum=0):
-    if num_count == 0:
-        print(
-            f'Наибольшее число по сумме цифр: {max_num}, сумма его цифр: {max_sum}')
-        return
-    num = int(input(f'Введите число № {str(num_count)}: '))
-    cur_sum = get_digits_sum(num)
-    if cur_sum > max_sum:
-        recursion(num_count - 1, num, cur_sum)
-    else:
-        recursion(num_count - 1, max_num, max_sum)
+def trans_m(m):
+    tmp = [[] for i in m[0]]
+    for i in m:
+        for idx2, ii in enumerate(i):
+            tmp[idx2].append(ii)
+    return tmp
 
 
-recursion(3)
+@profile
+def main():
+    m = create_m(500, 300)
+    print('Ссылок на матрицу m: ', getrefcount(m))
+    print(f'Размер Матрицы m = {asizeof.asizeof(m) // 1024} кб')
+    mm = trans_m(m)
+    print(f'Размер Транспонированной матрицы mm = {asizeof.asizeof(mm) // 1024} кб')
+    print('Максимальный элемент среди минимальных элементов столбцов матрицы: ', max([ii for ii in [min(i) for i in mm]]))
+    print('Ссылок на матрицу m: ', getrefcount(m))
+    print('Ссылок на матрицу mm: ', getrefcount(mm))
+    id_m = id(m)
+    print(m)
+    del m
+    del mm
+    print('Ссылок на матрицу m: ', getrefcount(m))
+
+
+main()
