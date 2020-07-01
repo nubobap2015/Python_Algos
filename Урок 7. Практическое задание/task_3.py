@@ -18,9 +18,10 @@ def create_list_int(list_len, l_border, r_border):
 # Использую set, что дает прирост производительности
 def get_median(base_list):
     for val in base_list:
-        cnt1 = 0
-        cnt2 = -1
+        cnt1 = cnt2 = 0
         for val2 in base_list:
+            if val == val2:
+                continue
             if val2 < val:
                 cnt1 += 1
             else:
@@ -33,9 +34,10 @@ def get_median(base_list):
 # Использую set, что дает прирост производительности
 def get_median_opt(base_list):
     for val in set(base_list):
-        cnt1 = 0
-        cnt2 = -1
+        cnt1 = cnt2 =0
         for val2 in base_list:
+            if val == val2:
+                continue
             if val2 < val:
                 cnt1 += 1
             else:
@@ -45,7 +47,7 @@ def get_median_opt(base_list):
     return None
 
 
-a = create_list_int(500,0,1000000)
+a = create_list_int(500,0,100000)
 print(a)
 print(sorted(a))
 print(get_median(a))
