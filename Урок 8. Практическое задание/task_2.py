@@ -9,6 +9,7 @@ s = "beep boop beer!"
 00 11 11 101 010 00 011 011 101 010 00 11 11 1000 1001
 """
 from collections import Counter
+from sys import getsizeof
 
 
 def get_counter(my_str):
@@ -62,7 +63,9 @@ def get_encodes_string(code_table, my_str, start_pos=0, finish_pos=1):
         return code_table.get(my_code) + get_encodes_string(code_table, my_str, finish_pos, finish_pos+1)
 
 
-my_string = 'отпуск по беременности и родам (проставляете только первый месяц ухода в декрет, в случае если в этом месяце сотрудник ещё работал)'
+my_string = 'отпуск по беременности и родам (проставляете только первый месяц ухода в декрет, в' \
+            ' случае если в этом месяце сотрудник ещё работал), но добавим еще немного текста что бы' \
+            'повысить эффективность сжатия'
 table = {}
 reverse_table = {}
 
@@ -83,6 +86,9 @@ print()
 print('Исходная строка: ', my_string)
 print('Закодированная строка: ', coded_str)
 print('Раскодированная строка: ', encoded_str)
+print(f'Исходная строка {len(my_string)} байт, закодированная строка {len(coded_str)//8} байт, дерево {getsizeof(aa)} байт')
+print(f'Эффетивный % сжатия {(1 - (len(coded_str)//8) / len(my_string)) * 100:.1f}')
+print(f'Фактический % сжатия {(1 - (len(coded_str)//8 + getsizeof(aa)) / len(my_string)) * 100:.1f}')
 
 """
 Исходная строка:  отпуск по беременности и родам (проставляете только первый месяц ухода в декрет, в случае если в этом месяце сотрудник ещё работал)
